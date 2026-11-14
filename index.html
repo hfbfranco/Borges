@@ -106,9 +106,16 @@ h3{font-size:1.25rem;font-weight:700;line-height:1.3}
 /* ---------- cabe\e7 alho ---------- */
 .top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);-webkit-backdrop-filter:saturate(160%) blur(10px);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:var(--head)}
-.logo{display:inline-flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--navy);flex:none}
-.logo b{font-family:var(--head-font);font-weight:800;font-size:1.3rem;letter-spacing:.34em;line-height:1;padding-bottom:7px;border-bottom:1px solid var(--gold);margin-right:-.34em}
-.logo span{font-size:.5rem;font-weight:600;letter-spacing:.31em;color:var(--muted);line-height:1;white-space:nowrap}
+.logo{--ls:.62em;display:inline-flex;flex-direction:column;gap:7px;text-decoration:none;color:var(--navy);flex:none}
+/* BORGES ocupa a mesma largura de CONSULTORIA TRIBUT\c1 RIA (espa\e7 amento ajustado no script) e recebe um brilho dourado */
+.logo b{font-family:var(--head-font);font-weight:800;font-size:1.32rem;letter-spacing:var(--ls);margin-right:calc(var(--ls) * -1);line-height:1;white-space:nowrap;
+  background-image:linear-gradient(105deg,var(--navy) 0 38%,#E3CC97 47%,var(--gold) 50%,#E3CC97 53%,var(--navy) 62% 100%);background-size:280% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--navy);animation:logo-shine 1.8s .35s cubic-bezier(.4,0,.2,1) both}
+.logo:hover b,.logo:focus-visible b{animation:logo-shine 1.2s cubic-bezier(.4,0,.2,1) both}
+.logo i{display:block;height:1px;background:linear-gradient(90deg,var(--gold),#E3CC97 50%,var(--gold));transform-origin:left;animation:logo-rule .9s .1s cubic-bezier(.2,.7,.2,1) both}
+.logo span{font-size:.5rem;font-weight:600;letter-spacing:.31em;margin-right:-.31em;color:var(--muted);line-height:1;white-space:nowrap}
+@keyframes logo-shine{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes logo-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .nav{display:none;align-items:center;gap:clamp(12px,1.35vw,22px)}
 .nav a{font-size:.9rem;font-weight:500;color:var(--ink);text-decoration:none;padding:8px 0;white-space:nowrap;box-shadow:inset 0 -2px 0 transparent;transition:color .2s,box-shadow .2s}
 .nav a:hover{color:var(--navy)}
@@ -526,6 +533,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 @media (min-width:760px){.foot-in{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1100px){.foot-in{grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr))}}
 .foot .logo{color:#fff}
+.foot .logo b{background-image:linear-gradient(105deg,#fff 0 38%,#E3CC97 47%,var(--gold) 50%,#E3CC97 53%,#fff 62% 100%);color:#fff}
 .foot .logo span{color:var(--on-dark)}
 .foot .concept{margin-top:16px;color:#fff;font-family:var(--head-font);font-weight:600;line-height:1.45;max-width:30ch}
 .foot h2{font-family:var(--text-font);font-size:.95rem;font-weight:600;color:#fff;margin-bottom:12px;letter-spacing:0}
@@ -550,7 +558,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <a class="skip" href="#conteudo">Pular para o conte&#xFA;do</a>
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="#inicio" aria-label="Borges Consultoria Tribut&#xE1;ria, p&#xE1;gina inicial"><b>BORGES</b><span>CONSULTORIA TRIBUT&#xC1;RIA</span></a>
+    <a class="logo" href="#inicio" aria-label="Borges Consultoria Tribut&#xE1;ria, p&#xE1;gina inicial"><b>BORGES</b><i aria-hidden="true"></i><span>CONSULTORIA TRIBUT&#xC1;RIA</span></a>
     <nav class="nav" aria-label="Menu principal">
       <a href="#inicio">In&#xED;cio</a>
       <a href="#solucoes">Solu&#xE7;&#xF5;es</a>
@@ -1674,7 +1682,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <footer class="foot">
   <div class="wrap foot-in">
     <div>
-      <a class="logo" href="#inicio"><b>BORGES</b><span>CONSULTORIA TRIBUT&#xC1;RIA</span></a>
+      <a class="logo" href="#inicio"><b>BORGES</b><i aria-hidden="true"></i><span>CONSULTORIA TRIBUT&#xC1;RIA</span></a>
       <p class="concept">Intelig&#xEA;ncia tribut&#xE1;ria. Estrat&#xE9;gia empresarial. Decis&#xF5;es fundamentadas.</p>
     </div>
     <nav aria-label="Solu&#xE7;&#xF5;es"><h2>Solu&#xE7;&#xF5;es</h2><ul>
@@ -2047,6 +2055,17 @@ document.addEventListener("click",function(e){
   if(a.classList.contains("js-wa"))track("falar_com_consultor",{assunto:a.dataset.msg||"geral",pagina:current});
   else if(a.classList.contains("src"))track("noticia_fonte",{link:a.href});
 },true);
+
+/* ---------- logotipo: BORGES com a mesma largura de CONSULTORIA TRIBUT\u00c1RIA ---------- */
+function fitLogo(){$$(".logo").forEach(function(l){
+  var b=$("b",l),s=$("span",l); if(!b||!s||!s.offsetWidth)return;
+  l.style.setProperty("--ls","0px");
+  var tw=function(el){var r=document.createRange();r.selectNodeContents(el);return r.getBoundingClientRect().width};
+  var lsS=parseFloat(getComputedStyle(s).letterSpacing)||0, target=tw(s)-lsS;
+  var w0=tw(b), n=b.textContent.length-1;
+  l.style.setProperty("--ls",Math.max(0,(target-w0)/n).toFixed(2)+"px");
+})}
+fitLogo(); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitLogo); addEventListener("resize",fitLogo);
 
 setWa();
 route();
